@@ -5,15 +5,19 @@ import { List } from '@mantine/core';
 import todolist from '../assets/todolist-image.png'
 import { Task } from '@/components/Task';
 import { AddTaskBar } from '@/components/AddTaskBar';
-import type { ITodoListPagination } from '../types/todolist'
+import type { Task as ITask } from '../types/todolist'
 import { searchTask } from '../services/searchToDoList'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FilterTask } from '@/components/FilterTask';
 
 
-export default function Home({ data }: ITodoListPagination) {
-  const { content } = data
-  const [tasks, setTasks] = useState(content)
+export default function Home() {
+  const [tasks, setTasks] = useState<ITask[]>([])
+
+  useEffect(() => {
+    searchTask()
+    .then(res => setTasks(res?.content))
+  },[])
 
   return (
     <>
@@ -45,12 +49,12 @@ export default function Home({ data }: ITodoListPagination) {
   )
 }
 
-export async function getServerSideProps() {
-  try {
-    const data = await searchTask();
-    return { props: { data } };
-  } catch (error) {
-    console.error(error);
-    return { props: { data: null } };
-  }
-}
+// export async function getServerSideProps() {
+//   try {
+//     const data = await searchTask();
+//     return { props: { data } };
+//   } catch (error) {
+//     console.error(error);
+//     return { props: { data: [] } };
+//   }
+// }
