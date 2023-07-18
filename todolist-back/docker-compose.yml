@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  server:
+    container_name: todolist-backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db_mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db_mysql:3306/todolist
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - todolist_network
+  db_mysql:
+    image: mysql:8.0
+    container_name: db_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todolist
+    networks:
+      - todolist_network
+    ports:
+      - "3307:3306"
+networks:
+  todolist_network:
+    driver: bridge
