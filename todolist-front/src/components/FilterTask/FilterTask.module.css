@@ -1,0 +1,34 @@
+.containerFilter,
+.containerFilter > div{
+  display: flex;
+  align-items: center;
+}
+.containerFilter{
+  gap: 10px;
+  margin: 0 0 30px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #5F432C;
+  width: 100%;
+}
+
+.containerFilter > div{
+  gap: 5px;
+}
+
+.containerFilter input[type="checkbox"]{
+  cursor: pointer;
+}
+
+.containerFilter input[type="checkbox"]:checked{
+  background-color: #5F432C;
+  border-color: #5F432C;
+}
+
+.containerFilter p {
+  color: #5F432C;
+  font-weight: 500;
+}
+
+.containerFilter span {
+  font-size: 13px;
+}

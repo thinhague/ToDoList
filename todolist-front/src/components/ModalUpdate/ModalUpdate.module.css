@@ -1,0 +1,14 @@
+.contentModalUpdate{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contentModalUpdate button:hover {
+  background-color: #5F432C;
+  opacity: 0.9;
+}
+
+.contentModalUpdate input:focus {
+  border-color: #5F432C;
+}

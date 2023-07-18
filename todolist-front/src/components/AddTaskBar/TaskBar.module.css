@@ -1,0 +1,17 @@
+.containerInput {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin: 0 0 30px;
+}
+
+.containerInput button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.containerInput input:focus {
+  border-color: #5F432C;
+}

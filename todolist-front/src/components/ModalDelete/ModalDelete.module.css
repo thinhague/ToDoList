@@ -1,0 +1,13 @@
+.contentModalDelete{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.contentModalDelete button{
+  flex: 1;
+}
+.contentModalDelete > :last-child:hover {
+  background-color: #5F432C;
+  opacity: 0.9;
+}

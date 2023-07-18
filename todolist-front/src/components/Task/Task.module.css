@@ -1,0 +1,51 @@
+.contentListItem,
+.taskListItem{
+  align-items: center;
+  display: flex;
+}
+.contentListItem {
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.contentListItem input[type="checkbox"]{
+  cursor: pointer;
+}
+
+.contentListItem input[type="checkbox"]:checked{
+  background-color: #5F432C;
+  border-color: #5F432C;
+}
+
+.taskListItem{
+  background-color: #C2A27F;
+  padding: 10px 20px;
+  border-radius: 16px;
+  width: 100%;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.taskListItem span {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.taskListItem{
+  color: #5F432C;
+  font-weight: 500;
+}
+
+.taskListItem label{
+  font-size: 13px;
+}
+
+.contentListItem button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
