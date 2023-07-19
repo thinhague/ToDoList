@@ -2,24 +2,28 @@ import { Input, Loader } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { BsPlusCircle } from 'react-icons/bs'
 import styles from './TaskBar.module.css'
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { createTask } from '@/services/postTodoList'
 import { Task } from '@/types/todolist';
+import { useForm } from "react-hook-form";
 
 interface ITaskBar {
   setTasks: Dispatch<SetStateAction<Task[]>>;
 }
 
-export const AddTaskBar = ({ setTasks }:ITaskBar) => {
-  const [loading, setLoading] = useState(false)
-  const [task, setTask] = useState('')
+interface FormData {
+  task: string;
+}
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => setTask(event.target.value)
-  
-  const handleCreateTask = async () => {
+export const AddTaskBar = ({ setTasks }: ITaskBar) => {
+  const [loading, setLoading] = useState(false)
+  const { handleSubmit, register, reset } = useForm<FormData>();
+
+  const handleCreateTask = async (data: FormData) => {
     try {
+      const { task } = data
       setLoading(true)
-     const newTask = await createTask({ task });
+      const newTask = await createTask({ task });
       setTimeout(() => {
         notifications.show({
           id: 'success-notification',
@@ -29,10 +33,10 @@ export const AddTaskBar = ({ setTasks }:ITaskBar) => {
           color: 'green',
         });
         setTasks(prev => [newTask, ...prev])
-        setTask('')
+        reset()
         setLoading(false)
       }, 1000)
-    } 
+    }
     catch (error) {
       setTimeout(() => {
         notifications.show({
@@ -46,18 +50,22 @@ export const AddTaskBar = ({ setTasks }:ITaskBar) => {
       }, 1000)
     }
   }
-  
+
 
   return (
-    <div className={styles['containerInput']}>
-      <Input onChange={handleOnChange} value={task} style={{ flex: 1 }} placeholder='Add your task' />
+    <form className={styles['containerInput']} onSubmit={handleSubmit(handleCreateTask)}>
+      <Input
+        style={{ flex: 1 }}
+        placeholder='Add your task'
+        {...register('task')}
+      />
       {
         loading ? <Loader color='#5F432C' size={25} />
           :
-          <button onClick={handleCreateTask}>
+          <button type='submit'>
             <BsPlusCircle color='#5F432C' size={30} />
           </button>
       }
-    </div>
+    </form>
   )
 }
