@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UpdateToDoList {
     private final ToDoListGateway toDoListGateway;
+    private final SearchToDoList searchToDoList;
 
     public ToDoList update(ToDoList toDoList) {
-        final ToDoList toDoListToUpdate = toDoListGateway.findById(toDoList.getId()).orElseThrow();
+        final ToDoList toDoListToUpdate = searchToDoList.findById(toDoList.getId());
 
         final Boolean isChecked = toDoList.getIsChecked() != null
                 ? toDoList.getIsChecked()

@@ -2,6 +2,7 @@ package com.app.todolist.entrypoint.exception.handler;
 
 import com.app.todolist.entrypoint.exception.handler.dto.ErrorDTO;
 import com.app.todolist.entrypoint.exception.handler.dto.MethodArgumentNotValidDTO;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,5 +39,13 @@ public class ControllerExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(errorDTO);
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity ResourceEmptyResultDataAccessException(
+            EmptyResultDataAccessException ex
+    ){
+        return ResponseEntity
+                .noContent().build();
     }
 }

@@ -50,8 +50,9 @@ public class ToDoListController {
             final Pageable pageable,
             @RequestParam(required = false) final Boolean isChecked
     ){
-        final Page<ToDoList> toDoLists = searchToDoList.search(pageable,isChecked);
-        return ResponseEntity.ok(toDoLists.map(ToDoListResponse::fromDomain));
+        final Page<ToDoListResponse> toDoLists = searchToDoList.search(pageable,isChecked)
+                .map(ToDoListResponse::fromDomain);
+        return ResponseEntity.ok(toDoLists);
     }
 
     @DeleteMapping("/{id}/delete")

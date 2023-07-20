@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 # Executar o comando de compilação do Maven para criar a pasta "target"
-RUN mvn package -DskipTests
+RUN mvn package
 
 # Executando a aplicação com o OpenJDK
 FROM adoptopenjdk/openjdk11
