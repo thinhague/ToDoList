@@ -143,7 +143,7 @@ public class ToDoListControllerTest {
         Boolean isChecked = false;
         when(updateToDoList.update(any())).thenThrow(RuntimeException.class);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/search?isChecked=falsee")
+        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/search?isChecked=test")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("isChecked",isChecked.toString()))
                 .andExpect(status().isBadRequest());
