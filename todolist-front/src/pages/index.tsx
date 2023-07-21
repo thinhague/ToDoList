@@ -48,13 +48,3 @@ export default function Home() {
     </>
   )
 }
-
-// export async function getServerSideProps() {
-//   try {
-//     const data = await searchTask();
-//     return { props: { data } };
-//   } catch (error) {
-//     console.error(error);
-//     return { props: { data: [] } };
-//   }
-// }
