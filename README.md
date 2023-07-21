@@ -53,7 +53,5 @@ docker compose up
 4. Alternatively, you can run the application locally. You will need to have Java 11 and Node.js 18 installed.
 
 ## 🔖 Docs
-
-
 You can find the backend apis documentation at http://localhost:8080/swagger-ui/index.html.
 
