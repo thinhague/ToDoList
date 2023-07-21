@@ -45,7 +45,6 @@ This application consists of a task list, where it stores its tasks in a databas
 ```sh
 git clone https://github.com/thinhague/ToDoList
 ```
----
 2. You can run the project and database using docker-compose. Each application has its own Dockerfile and docker-compose.yml. 
 Then create a network in docker using the command: `docker network create -d bridge todolist_network`.
 
