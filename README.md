@@ -20,7 +20,6 @@ This project was developed with the following technologies:
 - [Java]()
 - [Springboot]()
 - [MySQL]()
-- [Docker]()
 
 ## 💻 Project
 This application consists of a task list, where it stores its tasks in a database and performs all the operations of a simple CRUD.
