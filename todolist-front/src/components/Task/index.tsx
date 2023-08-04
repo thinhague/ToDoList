@@ -48,9 +48,11 @@ export function Task(props: Task & IProps) {
           className={styles['taskListItem']}
         >
           <span style={{ textDecoration: checked ? 'line-through' : 'none' }}>{task}</span>
-          <label>{createdAtTask}</label>
-          <ModalUpdate {...props} />
-          <ModalDelete {...props} />
+          <div>
+            <label>{createdAtTask}</label>
+            <ModalUpdate {...props} />
+            <ModalDelete {...props} />
+          </div>
         </div>
       </div>
     </List.Item>

@@ -58,6 +58,7 @@ export const AddTaskBar = ({ setTasks }: ITaskBar) => {
         style={{ flex: 1 }}
         placeholder='Add your task'
         {...register('task')}
+        maxLength={50}
       />
       {
         loading ? <Loader color='#5F432C' size={25} />
