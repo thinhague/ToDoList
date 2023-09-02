@@ -1,10 +1,13 @@
-version: '3.8'
+version: '3'
 
 services:
   app:
     container_name: frontend
     build:
       context: .
+      args:
+        NEXT_PUBLIC_URL: http://localhost:8080
+        NEXT_PUBLIC_URL_SSR: http://server:8080
       dockerfile: Dockerfile
     restart: always
     ports:

@@ -1,23 +1,26 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import { List } from '@mantine/core';
 import todolist from '../assets/todolist-image.png'
-import { Task } from '@/components/Task';
-import { AddTaskBar } from '@/components/AddTaskBar';
 import type { Task as ITask } from '../types/todolist'
-import { searchTask } from '../services/searchToDoList'
-import { useState, useEffect } from 'react';
-import { FilterTask } from '@/components/FilterTask';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import { axiosSSR } from '@/services/axios';
+import { DashboardTasks } from '@/components/DashboardTasks'
 
 
-export default function Home() {
-  const [tasks, setTasks] = useState<ITask[]>([])
+export const getServerSideProps: GetServerSideProps<{
+  data: ITask[]
+}> = async () => {
+  try{
+    const data = await (await axiosSSR.get('/todolist/search?sort=createdAt,DESC')).data;
+    return { props: { data: data.content } }
+  }
+  catch(error){
+    return { props: { data: [] } }
+  }
+}
 
-  useEffect(() => {
-    searchTask()
-    .then(res => setTasks(res?.content))
-  },[])
+export default function Home({ data }:InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
     <>
@@ -33,16 +36,7 @@ export default function Home() {
             src={todolist}
             alt='todolist'
           />
-          <AddTaskBar setTasks={setTasks} />
-          <FilterTask setTasks={setTasks}  />
-          <List
-            w={'100%'}
-            spacing="lg"
-            size="sm"
-            center
-          >
-            {tasks?.map((task) => <Task key={task.id} {...task} setTasks={setTasks} />)}
-          </List>
+          <DashboardTasks data={data} />
         </section>
       </main>
     </>
