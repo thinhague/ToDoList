@@ -188,7 +188,7 @@ public class ToDoListControllerTest {
     }
 
     @Test
-    void testDeletePhonebookWithInvalidId() throws Exception {
+    void testDeleteTodoListWithInvalidId() throws Exception {
         doThrow(EmptyResultDataAccessException.class).when(deleteToDoList).delete(any());
         mockMvc.perform(MockMvcRequestBuilders.delete("/todolist/1000/delete"))
                 .andExpect(status().isNoContent());
